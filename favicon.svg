@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="16" fill="oklch(40% 0.09 128)"/>
+  <text
+    x="16" y="16"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="14"
+    font-weight="700"
+    fill="oklch(96% 0.018 85)"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    letter-spacing="-1"
+  >CC</text>
+</svg>

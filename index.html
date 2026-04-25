@@ -887,6 +887,25 @@
     margin-top: 16px;
   }
 
+  /* ─── NO-SCROLL PAGES (desktop) ─── */
+  .page-no-scroll {
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .page-no-scroll .hero { height: auto; flex: 1; min-height: 0; }
+  .page-no-scroll .section-header { padding: 40px 64px 24px; flex-shrink: 0; }
+  .page-no-scroll .about-grid { flex: 1; min-height: 0; grid-template-rows: 1fr; }
+  .page-no-scroll .about-bio { padding: 40px 64px; overflow-y: auto; }
+  .page-no-scroll .about-sidebar { padding: 40px 64px; gap: 24px; overflow-y: auto; }
+  .page-no-scroll .polaroid-wrap { height: 200px; }
+  .page-no-scroll .contact-wrap { flex: 1; min-height: 0; grid-template-rows: 1fr; }
+  .page-no-scroll .contact-left { padding: 40px 64px; overflow-y: auto; }
+  .page-no-scroll .contact-right { padding: 40px 64px; overflow-y: auto; }
+  .page-no-scroll .social-link { padding: 12px 0; }
+  .page-no-scroll .social-name { font-size: 20px; }
+
   .mobile-only { display: none; }
   @media (max-width: 768px) {
     .desktop-only { display: none; }
@@ -924,6 +943,18 @@
     .contact-right { padding: 32px 24px 48px; }
 
     footer { padding: 20px 24px; flex-direction: column; gap: 4px; text-align: center; }
+
+    .page-no-scroll { height: auto; overflow: visible; }
+    .page-no-scroll .hero { flex: none; height: auto; }
+    .page-no-scroll .section-header { padding: 48px 24px 28px; }
+    .page-no-scroll .about-grid { grid-template-rows: auto; }
+    .page-no-scroll .about-bio { padding: 32px 24px; overflow-y: visible; }
+    .page-no-scroll .about-sidebar { padding: 32px 24px; gap: 32px; overflow-y: visible; }
+    .page-no-scroll .polaroid-wrap { height: 340px; }
+    .page-no-scroll .contact-left { padding: 40px 24px 32px; overflow-y: visible; }
+    .page-no-scroll .contact-right { padding: 32px 24px 48px; overflow-y: visible; }
+    .page-no-scroll .social-link { padding: 28px 0; }
+    .page-no-scroll .social-name { font-size: 28px; }
   }
 </style>
 </head>
@@ -1094,6 +1125,15 @@ const DATA = {
     },
   ],
 };
+
+function Footer() {
+  return (
+    <footer>
+      <span>© 2026 Christian Armando Consuelo Mayen</span>
+      <span style={{letterSpacing:'0.04em'}}>Senior Software Engineer · Mexico City</span>
+    </footer>
+  );
+}
 
 const PAGES = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
 
@@ -1382,7 +1422,8 @@ function Nav({ page, setPage }) {
 
 function HomePage({ setPage }) {
   return (
-    <div className="hero">
+    <div className="page-no-scroll">
+      <div className="hero">
       <div className="hero-left">
         <p className="hero-eyebrow">Senior Software Engineer</p>
         <h1 className="hero-name">
@@ -1397,13 +1438,15 @@ function HomePage({ setPage }) {
       <div className="hero-right">
         <HeroCarousel setPage={setPage} />
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }
 
 function AboutPage() {
   return (
-    <div>
+    <div className="page-no-scroll">
       <div className="section-header">
         <div>
           <p className="section-label">About</p>
@@ -1430,6 +1473,7 @@ function AboutPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -1469,6 +1513,7 @@ function ExperiencePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -1494,6 +1539,7 @@ function SkillsPage() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
@@ -1570,13 +1616,14 @@ function ProjectsPage() {
           View all on GitHub
         </a>
       </div>
+      <Footer />
     </div>
   );
 }
 
 function ContactPage() {
   return (
-    <div>
+    <div className="page-no-scroll">
       <div className="section-header">
         <div>
           <p className="section-label">Get in Touch</p>
@@ -1630,6 +1677,7 @@ function ContactPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -1646,10 +1694,6 @@ function App() {
       <AnimatedPage id="skills" current={page}><SkillsPage /></AnimatedPage>
       <AnimatedPage id="projects" current={page}><ProjectsPage /></AnimatedPage>
       <AnimatedPage id="contact" current={page}><ContactPage /></AnimatedPage>
-      <footer>
-        <span>© 2026 Christian Armando Consuelo Mayen</span>
-        <span style={{letterSpacing:'0.04em'}}>Senior Software Engineer · Mexico City</span>
-      </footer>
     </>
   );
 }

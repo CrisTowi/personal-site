@@ -1,3 +1,4 @@
+import React from 'react'
 import { DATA } from '../../data'
 import Footer from '../Footer'
 

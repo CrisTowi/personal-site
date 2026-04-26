@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const PHOTOS = [
   { caption: 'At the gym, 6am grind 💪', color: 'oklch(88% 0.03 80)', icon: '🏋️' },

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PAGES } from './data'
 import Nav from './components/Nav'
 import AnimatedPage from './components/AnimatedPage'

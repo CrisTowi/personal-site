@@ -1,38 +1,32 @@
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { DATA } from '../data'
 
 export default function HeroCarousel({ setPage }) {
   const [current, setCurrent] = useState(0)
-  const [animating, setAnimating] = useState(false)
-  const containerRef = useRef(null)
-  const accRef = useRef(0)
   const total = 3
+  const timerRef = useRef(null)
 
-  const goTo = (idx) => {
-    if (animating) return
-    setAnimating(true)
-    setCurrent(((idx % total) + total) % total)
-    setTimeout(() => setAnimating(false), 560)
+  const pausedRef = useRef(false)
+
+  const resetTimer = () => {
+    clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
+      if (!pausedRef.current) setCurrent(prev => (prev + 1) % total)
+    }, 5000)
   }
 
   useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const onWheel = (event) => {
-      const slide = el.querySelectorAll('.hc-slide')[current]
-      if (slide) {
-        const atTop = slide.scrollTop === 0
-        const atBottom = slide.scrollHeight - slide.scrollTop <= slide.clientHeight + 1
-        if ((event.deltaY < 0 && !atTop) || (event.deltaY > 0 && !atBottom)) return
-      }
-      event.preventDefault()
-      accRef.current += event.deltaY
-      if (accRef.current > 60) { goTo(current + 1); accRef.current = 0 }
-      else if (accRef.current < -60) { goTo(current - 1); accRef.current = 0 }
-    }
-    el.addEventListener('wheel', onWheel, { passive: false })
-    return () => el.removeEventListener('wheel', onWheel)
-  }, [current, animating])
+    resetTimer()
+    return () => clearInterval(timerRef.current)
+  }, [])
+
+  const goTo = (idx) => {
+    setCurrent(((idx % total) + total) % total)
+    resetTimer()
+  }
+
+  const handleMouseEnter = () => { pausedRef.current = true }
+  const handleMouseLeave = () => { pausedRef.current = false }
 
   const slides = [
     {
@@ -56,7 +50,11 @@ export default function HeroCarousel({ setPage }) {
   ]
 
   return (
-    <div ref={containerRef} style={{ position: 'relative', height: '100%', overflow: 'hidden', background: 'var(--ink)' }}>
+    <div
+      style={{ position: 'relative', height: '100%', overflow: 'hidden', background: 'var(--ink)' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {slides.map((slide, slideIndex) => (
         <div
           key={slideIndex}
@@ -94,7 +92,6 @@ export default function HeroCarousel({ setPage }) {
           />
         ))}
       </div>
-      <div className="hc-hint">↕ scroll to explore</div>
     </div>
   )
 }

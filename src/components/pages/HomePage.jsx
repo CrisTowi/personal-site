@@ -1,10 +1,11 @@
+import React from 'react'
 import { DATA } from '../../data'
 import Footer from '../Footer'
 import HeroCarousel from '../HeroCarousel'
 
 export default function HomePage({ setPage }) {
   return (
-    <div className="page-no-scroll">
+    <div className="page-no-scroll page-home">
       <div className="hero">
         <div className="hero-left">
           <p className="hero-eyebrow">Senior Software Engineer</p>

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 export default function AnimatedPage({ id, current, children }) {
   const ref = useRef(null)

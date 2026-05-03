@@ -9,6 +9,15 @@ export default function ExperiencePage() {
         <div>
           <p className="section-label">Work History</p>
           <h2 className="section-title">Experience</h2>
+          <a
+            href="https://drive.google.com/file/d/1dRdJGd3muKy-nqUf7M6TLjMsQ8QYkCRx/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline"
+            style={{ marginTop: 16, display: 'inline-block' }}
+          >
+            Download CV
+          </a>
         </div>
         <span className="section-count">03</span>
       </div>

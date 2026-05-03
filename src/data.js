@@ -16,6 +16,16 @@ export const DATA = {
   interests: ['Videogames & interactive design', 'Fitness & movement', 'AI-assisted development', 'Open source contribution'],
   experience: [
     {
+      company: 'Crunchyroll',
+      role: 'Senior Software Engineer',
+      dates: 'Apr 2026 — Present',
+      bullets: [
+        'Building and maintaining high-quality web applications within a large-scale consumer product ecosystem.',
+        'Collaborating across engineering teams to deliver features that reach a global audience of anime fans.',
+        'Applying a decade of frontend and full-stack expertise to drive technical quality and engineering standards.',
+      ],
+    },
+    {
       company: 'Square (Block)',
       role: 'Senior Software Engineer',
       dates: 'May 2023 — Feb 2026',
